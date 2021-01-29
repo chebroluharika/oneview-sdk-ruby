@@ -9,7 +9,7 @@ RUN apt-get update -y && \
 RUN gem install oneview
 ADD . oneview/
 WORKDIR  /root/oneview
-RUN gem install bundler
+RUN gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
 RUN bundle update
 
 # Clean and remove not required packages
